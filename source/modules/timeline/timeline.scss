@@ -4,6 +4,36 @@ v-timeline {
 }
 
 .v-timeline {
-    transition: all 5s ease;
-    opacity: 1;
+    display: flex !important;
+    flex-direction: column;
+}
+
+.v-timeline-item {
+    display: grid !important;
+    grid-template-columns: 1fr 30px 1fr;
+    grid-template-rows: 200px;
+    align-items: center;
+
+    &.visible {
+        .v-timeline-item__opposite,
+        .v-timeline-item__body {
+            opacity: 1;
+        }
+    }
+
+    .v-timeline-item__opposite,
+    .v-timeline-item__body {
+        opacity: 0;
+        transition: all 3s ease;
+    }
+
+    > * {
+        grid-row: 1 !important;
+    }
+
+}
+
+.v-timeline-item__body {
+    display: flex;
+    align-items: center;
 }

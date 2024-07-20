@@ -68,7 +68,16 @@ class SiteController extends Controller
             return $this->refresh();
         }
 
+        $objects = \app\models\Timeline::find()->orderBy('date')->all();
+
+        $data = [];
+        foreach ($objects as $item) {
+            $data[] = $item->JSONData;
+        }
+
+
         return $this->render('index', [
+            'timelineData' => $data,
             'contactModel' => $model,
         ]);
     }

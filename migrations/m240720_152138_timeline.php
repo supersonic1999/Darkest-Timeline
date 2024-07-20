@@ -18,7 +18,7 @@ class m240720_152138_timeline extends Migration
             'dotColor' => $this->string(),
             'icon' => $this->string(),
             'title' => $this->string()->notNull(),
-            'text' => $this->string(),
+            'text' => $this->string(2000),
             'suggester' => $this->string(),
         ]);
     }

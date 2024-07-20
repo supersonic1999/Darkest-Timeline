@@ -1,30 +1,18 @@
 <?php
-$this->title = 'Darkest Timeline';
+$this->title = 'Literally the Darkest Timeline..';
 ?>
 
-
 <div id="about" class="my-5">
-    <div class="text-center">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim urna eu turpis accumsan
-            venenatis. Morbi turpis libero, fringilla eget tincidunt id, dictum sed nunc. Nunc molestie varius
-            tincidunt. In convallis nisi lacus, quis congue dui auctor id. Fusce sed sollicitudin tellus, at
-            luctus
-            tortor. Suspendisse potenti. Nullam vel risus vitae tortor sodales volutpat. Pellentesque cursus
-            sapien
-            bibendum orci placerat, eu molestie sem bibendum. Aenean sed eleifend ante. Quisque vulputate felis
-            orci, eu tempus diam accumsan quis. Sed egestas blandit metus, a dictum turpis eleifend sed.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-            Vestibulum
-            ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus vel maximus
-            est.
-        </p>
+    <div class="text-center w-100">
+        <h3>Welcome to the Darkest Timeline....</h3>
+        <p class="text-h6">Cast your vote below</p>
     </div>
 </div>
 
 <div id="timeline">
     <?=
         $this->render('timeline', [
-
+            'timelineData' => $timelineData,
         ]);
     ?>
 </div>

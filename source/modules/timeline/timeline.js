@@ -14,78 +14,34 @@ const vuetify = createVuetify({
     },
 });
 
-const data = [
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Donald Trump',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',
-        suggester: 'Anon',
-    },
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Harambe',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',
-        suggester: 'Anon',
-    },
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Harambe',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',
-        suggester: 'Anon',
-    },
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Harambe',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',
-        suggester: 'Anon',
-    },
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Harambe',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',
-        suggester: 'Anon',
-    },
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Harambe',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',
-        suggester: 'Anon',
-    },
-    {
-        date: '1990',
-        dotColor: 'red',
-        icon: 'fa-solid fa-money-bill',
-        title: 'Harambe',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies tincidunt urna, vel consectetur massa lobortis sit amet. Cras quis diam ut erat suscipit interdum nec eu tortor. Cras ac velit quis metus convallis dictum quis a tellus.',suggester: 'Anon',
-    }
-];
-
 createApp({
-    components,
+    components: {
+        components,
+    },
     directives,
     props: [
         'init_timelinedata',
     ],
+    methods: {
+        onIntersect (isIntersecting, entries, observer) {
+          console.log(entries);
+
+          entries.forEach(element => {
+            console.log(element.target);
+            if (isIntersecting) {
+                element.target.classList.add('visible');
+            }
+          });
+        },
+      },
     mounted() {
         this.timelineData = this.init_timelinedata;
-    },
+},
     data() {
         return {
             timelineData: [],
         }
     }
 }, {
-    init_timelinedata: data,
+    init_timelinedata: window.timelineData,
 }).use(vuetify).mount('#timeline');
