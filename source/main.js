@@ -1,2 +1,2 @@
 import "./js/general";
-import "./js/timeline";
+import "./modules/timeline/timeline";
