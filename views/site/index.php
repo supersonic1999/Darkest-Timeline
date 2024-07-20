@@ -2,10 +2,14 @@
 $this->title = 'Literally the Darkest Timeline..';
 ?>
 
+<script>
+    window.timelineData = <?= json_encode($timelineData) ?>;
+</script>
+
 <div id="about" class="my-5">
     <div class="text-center w-100">
-        <h3>Welcome to the Darkest Timeline....</h3>
-        <p class="text-h6">Cast your vote below</p>
+        <h3>When did we enter the Darkest Timeline?</h3>
+        <p class="text-h6">View and cast your vote below</p>
     </div>
 </div>
 

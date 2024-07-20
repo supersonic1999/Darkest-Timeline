@@ -30,25 +30,25 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginBody() ?>
 
 <header id="header">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => ['class' => 'border-bottom navbar-expand-md navbar-dark bg-dark fixed-top']
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'ms-auto navbar-nav'],
-        'items' => [
-            ['label' => 'Back to Top', 'url' => ['#header']],
-            ['label' => 'About', 'url' => ['#header']],
-            ['label' => 'Suggest', 'url' => ['#suggest']],
-        ]
-    ]);
-    NavBar::end();
-    ?>
+    <nav class="border-bottom navbar-expand-md navbar-dark bg-dark fixed-top navbar">
+        <div class="container">
+            <a class="mx-auto navbar-brand" href="#main">Darkest Timeline</a>
+        </div>
+    </nav>
+    
+
 </header>
 
-<main id="main" class="flex-shrink-0" role="main">
+<main id="main" class="position-relative flex-shrink-0" role="main">
+    <div id="particlesBG">
+        <particles-bg
+            num="300" 
+            rotate="0.1"
+            color="#ffffff"
+            type="cobweb"
+            />
+    </div>
+
     <div class="container">
         <?php if (!empty($this->params['breadcrumbs'])): ?>
             <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
@@ -58,7 +58,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     </div>
 </main>
 
-<footer id="footer" class="mt-auto py-3 border-top">
+<footer id="footer" class="mt-auto py-3 border-top bg-dark">
     <div class="container">
         <div class="row text-muted">
             <div class="col-md-6 text-center text-md-start">&copy; <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="#">Jason Gray</a> <?= date('Y') ?></div>

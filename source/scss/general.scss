@@ -9,6 +9,13 @@
     align-items: center;
 }
 
-.v-timeline {
-    
+#particlesBG {
+    canvas {
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.1;
+    }
 }

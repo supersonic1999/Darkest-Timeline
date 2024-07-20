@@ -71,8 +71,12 @@ class SiteController extends Controller
         $objects = \app\models\Timeline::find()->orderBy('date')->all();
 
         $data = [];
-        foreach ($objects as $item) {
-            $data[] = $item->JSONData;
+        foreach ($objects as $key => $item) {
+            $json = $item->JSONData;
+            $json['winning'] = $key == 3 ? true : false;
+            $json['votes'] = 15;
+
+            $data[] = $json;
         }
 
 
