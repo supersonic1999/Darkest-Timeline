@@ -1,0 +1,1 @@
+{"version":3,"file":"css/app.css","mappings":"AAAA;EACI;ACCJ,C","sources":["webpack:///./source/scss/general.scss","webpack:///./source/main.scss"],"sourcesContent":["#main {\r\n    margin-top: 60px;\r\n}","#main {\n  margin-top: 60px;\n}"],"names":[],"sourceRoot":""}
