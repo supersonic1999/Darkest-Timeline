@@ -16,5 +16,6 @@ class AppHeadAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap5\BootstrapAsset',
         Select2Asset::class,
+        FontAwesomeAsset::class,
     ];
 }

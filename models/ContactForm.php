@@ -10,10 +10,9 @@ use yii\base\Model;
  */
 class ContactForm extends Model
 {
-    public $name;
+    public $name = 'Anon';
     public $email;
-    public $subject;
-    public $body;
+    public $suggestion;
     public $verifyCode;
 
 
@@ -24,7 +23,7 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
+            [['name', 'email', 'suggestion'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
