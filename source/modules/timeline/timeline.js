@@ -23,6 +23,7 @@ createApp({
     directives,
     props: [
         'init_timelinedata',
+        'init_voted',
     ],
     provide() {
         return {
@@ -39,15 +40,24 @@ createApp({
         },
         togglePolitics(e) {
             this.politics = !this.politics;
-           // console.log(this.politics);
         },
         vote(e) {
             this.voted = true;
+
+            $.ajax({
+                url: baseUrl + "/site/ajax-cast-vote",
+                cache: false,
+                data: {
+                    timeline_id: 1,
+                },
+                success: function (e) {
+                }
+            });
         }
     },
     mounted() {
-        console.log(this.testpolitics);
         this.timelineData = this.init_timelinedata;
+        this.voted = this.init_voted;
     },
     data() {
         return {
@@ -57,5 +67,6 @@ createApp({
         }
     }
 }, {
-    init_timelinedata: window.timelineData,
+    init_timelinedata: window.timeline.data,
+    init_voted: window.timeline.voted,
 }).use(vuetify).mount('#timeline');

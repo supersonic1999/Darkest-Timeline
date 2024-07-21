@@ -63,4 +63,8 @@ class Timeline extends \yii\db\ActiveRecord
             'suggester' => $this->suggester,
         ];
     }
+
+    public function getVoteCount() {
+        return Votes::find()->andWhere(['timeline_id' => $this->id])->count();
+    }
 }

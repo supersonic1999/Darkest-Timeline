@@ -75,7 +75,7 @@ class SiteController extends Controller
         foreach ($objects as $key => $item) {
             $json = $item->JSONData;
             $json['winning'] = $key == 3 ? true : false;
-            $json['votes'] = 15;
+            $json['votes'] = $item->voteCount;
 
             $data[] = $json;
         }
@@ -87,8 +87,37 @@ class SiteController extends Controller
         ]);
     }
 
-    public function getCheckVoted() {
+    public function actionAjaxCastVote($timeline_id)
+    {
+        if (!Yii::$app->request->validateCsrfToken()) {
+            throw new \yii\web\HttpException(404, 'Invalid CSRF');
+        }
+
         $sessionid = Yii::$app->session->getId();
+        if (Votes::findOne(['session_id' => $sessionid])) {
+            throw new \yii\web\HttpException(404, 'You have already voted!');
+        }
+
+        $vote = new Votes;
+        $vote->timeline_id = $timeline_id;
+        $vote->session_id = $sessionid;
+        $vote->voted_at = strval(time());
+        $vote->save();
+
+        return \Yii::createObject([
+            'class' => 'yii\web\Response',
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'data' => [
+                'status' => 'success',
+                'code' => 200,
+            ],
+        ]);
+    }
+
+    public function getCheckVoted()
+    {
+        $sessionid = Yii::$app->session->getId();
+        if (!$sessionid) return false;
 
         return Votes::findOne(['session_id' => $sessionid]) != null;
     }

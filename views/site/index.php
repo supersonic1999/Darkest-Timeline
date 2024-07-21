@@ -3,13 +3,26 @@ $this->title = 'Literally the Darkest Timeline..';
 ?>
 
 <script>
-    window.timelineData = <?= json_encode($timelineData) ?>;
+    window.timeline = [];
+    window.timeline.data = <?= json_encode($timelineData) ?>;
+    window.timeline.voted = <?= json_encode($voted) ?>;
 </script>
 
-<div id="about" class="my-5">
-    <div class="text-center w-100">
-        <h3>When did we enter the Darkest Timeline?</h3>
-        <p class="text-h6">View and cast your vote below</p>
+<div id="about">
+    <div class="row gy-3">
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <div class="text-center w-100">
+                <h3>When did we enter the Darkest Timeline?</h3>
+                <p class="mb-0 text-h6">View and cast your vote below</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/euu9TWw1R8U?si=b0UHW8_YzxEENGZd"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </div>
 </div>
 

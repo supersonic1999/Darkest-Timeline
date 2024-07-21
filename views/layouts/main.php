@@ -25,6 +25,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <script type="text/javascript">
+        const baseUrl = '<?= Yii::$app->request->baseurl ?>';
+    </script>
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
