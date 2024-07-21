@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Votes;
 
 class SiteController extends Controller
 {
@@ -79,10 +80,16 @@ class SiteController extends Controller
             $data[] = $json;
         }
 
-
         return $this->render('index', [
             'timelineData' => $data,
             'contactModel' => $model,
+            'voted' => $this->checkVoted,
         ]);
+    }
+
+    public function getCheckVoted() {
+        $sessionid = Yii::$app->session->getId();
+
+        return Votes::findOne(['session_id' => $sessionid]) != null;
     }
 }
