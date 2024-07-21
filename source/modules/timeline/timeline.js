@@ -23,7 +23,7 @@ createApp({
     directives,
     props: [
         'init_timelinedata',
-        'init_voted',
+        'init_canVote',
     ],
     provide() {
         return {
@@ -31,6 +31,12 @@ createApp({
         }
     },
     methods: {
+        checkPolitics(timeline_item) {
+            if (!this.politics) {
+                return !timeline_item.is_political;
+            }
+            return true;
+        },
         onIntersect(isIntersecting, entries, observer) {
             entries.forEach(element => {
                 if (isIntersecting) {
@@ -40,33 +46,46 @@ createApp({
         },
         togglePolitics(e) {
             this.politics = !this.politics;
+
+            sessionStorage.setItem("politics", this.politics);
         },
-        vote(e) {
-            this.voted = true;
+        vote(e, timeline_item) {
+            const that = this;
 
             $.ajax({
                 url: baseUrl + "/site/ajax-cast-vote",
                 cache: false,
                 data: {
-                    timeline_id: 1,
+                    timeline_id: timeline_item.id,
                 },
                 success: function (e) {
+                    that.canVote = e.canVote;
+
+                    timeline_item.votes += 1;
+                    timeline_item.votes_monthly += 1;
+                    timeline_item.votedFor = true;
                 }
             });
         }
     },
     mounted() {
         this.timelineData = this.init_timelinedata;
-        this.voted = this.init_voted;
+        this.canVote = this.init_canVote;
+
+        if (!sessionStorage.getItem("politics")) {
+            sessionStorage.setItem("politics", false);
+        } else {
+            this.politics = (sessionStorage.getItem("politics") == "true");
+        }
     },
     data() {
         return {
             timelineData: [],
-            voted: false,
+            canVote: false,
             politics: false,
         }
     }
 }, {
     init_timelinedata: window.timeline.data,
-    init_voted: window.timeline.voted,
+    init_canVote: window.timeline.canVote,
 }).use(vuetify).mount('#timeline');

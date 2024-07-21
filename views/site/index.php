@@ -5,15 +5,17 @@ $this->title = 'Literally the Darkest Timeline..';
 <script>
     window.timeline = [];
     window.timeline.data = <?= json_encode($timelineData) ?>;
-    window.timeline.voted = <?= json_encode($voted) ?>;
+    window.timeline.canVote = <?= json_encode($canVote) ?>;
 </script>
 
 <div id="about">
     <div class="row gy-3">
         <div class="col-md-6 d-flex flex-column justify-content-center">
-            <div class="text-center w-100">
-                <h3>When did we enter the Darkest Timeline?</h3>
-                <p class="mb-0 text-h6">View and cast your vote below</p>
+            <div class="w-100">
+                <h3>When did we enter the Darkest Timeline? <i>or have we.....</i></h3>
+                <br>
+                <p class="mb-0 text-h6">View community votes and cast your own below.</p>
+                <p><small>(Votes reset at start of the month.)</small></p>
             </div>
         </div>
 

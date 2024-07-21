@@ -14,6 +14,7 @@ use Yii;
  * @property string $title
  * @property string|null $text
  * @property string|null $suggester
+ * @property boolean|null $is_political
  */
 class Timeline extends \yii\db\ActiveRecord
 {
@@ -32,6 +33,7 @@ class Timeline extends \yii\db\ActiveRecord
     {
         return [
             [['date', 'title'], 'required'],
+            [['is_political'], 'boolean'],
             [['date', 'dotColor', 'icon', 'title', 'text', 'suggester'], 'string', 'max' => 255],
         ];
     }
@@ -49,6 +51,7 @@ class Timeline extends \yii\db\ActiveRecord
             'title' => 'Title',
             'text' => 'Text',
             'suggester' => 'Suggester',
+            'is_political' => 'Is Political',
         ];
     }
 
@@ -61,10 +64,16 @@ class Timeline extends \yii\db\ActiveRecord
             'title' => $this->title,
             'text' => $this->text,
             'suggester' => $this->suggester,
+            'is_political' => $this->is_political,
         ];
     }
 
     public function getVoteCount() {
         return Votes::find()->andWhere(['timeline_id' => $this->id])->count();
+    }
+
+    public function getVoteMonthlyCount() {
+        return Votes::find()->andWhere(['timeline_id' => $this->id])
+            ->andWhere(['>', 'voted_at', strtotime(date("Y-m-01", time()))])->count();
     }
 }
